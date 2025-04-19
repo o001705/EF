@@ -78,6 +78,10 @@ uvicorn bank_mfe:app --reload --port 8001
 
 ---
 
+### Future Extensions
+Added Channel folders undr templates and static folders for future extension and make this flow channel agnostic
+
+
 ## Authors & License
 MIT License. Created for demo purposes to explore composable architectures in FinTech.
 
