@@ -20,7 +20,7 @@ This project demonstrates a Composable Embedded Finance architecture involving b
 
 ## Architecture Overview
 
-![Composable Architecture](composable.png)
+![Composable Architecture](Composable.png)
 
 ---
 
