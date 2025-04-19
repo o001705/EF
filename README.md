@@ -19,6 +19,20 @@ This project demonstrates a Composable Embedded Finance architecture involving b
 
 ## Architecture Overview
 
+### Limitations when neither Merchant not Bank use Composable Architecture
+
+![NM-NB](NMNB.png)
+
+### Limitations when Merchant is not composable but Bank is
+
+![NM-CB](NMCB.png)
+
+### Limitations when Merchant is composable but Bank is not
+
+![CM-NB](CMNB.png)
+
+### When both Merchant and Bank folow composable architecture:
+
 ![Composable Architecture](Composable.png)
 
 ---

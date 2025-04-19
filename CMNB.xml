@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" version="26.2.13">
+  <diagram name="Composable Merchant with Monolithic Bank" id="composableMerchantMonolithicBank">
+    <mxGraphModel dx="1044" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Merchant Frontend (Composable MFE)" style="shape=swimlane;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="30" width="260" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Bank Backend (Monolithic)" style="shape=rectangle;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="440" y="70" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="❌ Difficult to scale or evolve Bank services independently" style="shape=note;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="170" y="430" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;" parent="1" source="2" target="3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#b85450;endArrow=block;" parent="1" target="4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="550" y="150" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="550" y="290" />
+              <mxPoint x="270" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#b85450;endArrow=block;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="547" y="150" as="sourcePoint" />
+            <mxPoint x="557" y="350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="550" y="150" />
+              <mxPoint x="550" y="340" />
+              <mxPoint x="557" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" value="❌ Bank cannot onboard new &#xa;partners/channels dynamically" style="shape=note;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="670" y="430" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#b85450;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="3" target="9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="290" />
+              <mxPoint x="820" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hUMMndfIXkx46hKGCORx-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#b85450;endArrow=block;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="547" y="150" as="sourcePoint" />
+            <mxPoint x="557" y="350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="548" y="150" />
+              <mxPoint x="548" y="239" />
+              <mxPoint x="550" y="239" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" value="❌ No adaptive UX for Web, Chat, &#xa;IVR, Mobile from Bank" style="shape=note;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="410" y="326" width="280" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
