@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Offers</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="container">
+        <h2>Choose a Loan Offer</h2>
+
+        {% if offers %}
+            <form action="/accept-offer" method="post">
+                <input type="hidden" name="transaction_id" value="{{ transaction_id }}" />
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Offer ID</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>EMI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for offer in offers %}
+                            <tr>
+                                <td>{{ offer.offer_id }}</td>
+                                <td>{{ offer.description }}</td>
+                                <td>{{ offer.amount }}</td>
+                                <td>{{ offer.emi }}</td>
+                                <td>
+                                    <input type="radio" name="offer_id" value="{{ offer.offer_id }}" required />
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <button type="submit">Accept Offer</button>
+            </form>
+        {% else %}
+            <p>No offers available for this customer.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KYC Form</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="container">
+        <h2>KYC Form</h2>
+        <p>Please enter your details for KYC verification.</p>
+
+        <form action="/process-kyc" method="post">
+            <input type="hidden" name="transaction_id" value="{{ transaction_id }}" />
+            <input type="hidden" name="amount" value="{{ amount }}" />
+            <input type="hidden" name="phone" value="{{ phone }}" />
+
+            <label for="govt_id">Government ID:</label>
+            <input type="text" id="govt_id" name="govt_id" required />
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required />
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

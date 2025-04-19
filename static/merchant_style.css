@@ -1,0 +1,81 @@
+/* Root Colors */
+:root {
+    --tesco-blue: #00539f;
+    --tesco-red: #ee1c2e;
+    --tesco-gray: #f6f6f6;
+    --tesco-dark: #222;
+    --tesco-white: #ffffff;
+  }
+  
+  /* Basic Reset */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: var(--tesco-gray);
+    color: var(--tesco-dark);
+  }
+  
+  /* Header */
+  header {
+    background-color: var(--tesco-blue);
+    color: var(--tesco-white);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: var(--tesco-white);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+  }
+  
+  /* Buttons */
+  button, .btn {
+    background-color: var(--tesco-red);
+    color: var(--tesco-white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover, .btn:hover {
+    background-color: #c7111e;
+  }
+  
+  /* Form inputs */
+  input[type="text"], input[type="number"], input[type="email"], input[type="password"], select {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  /* Status box */
+  .status-box {
+    padding: 1rem;
+    background-color: var(--tesco-gray);
+    border-left: 4px solid var(--tesco-blue);
+    margin-bottom: 1rem;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 3rem;
+  }
+  

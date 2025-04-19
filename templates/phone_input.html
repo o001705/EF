@@ -1,0 +1,36 @@
+<!-- templates/phone_input.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Phone Number</title>
+    <link rel="stylesheet" href="/static/style.css" />    
+</head>
+<body>
+    <h2>Enter your phone number to get personalized offers</h2>
+    <form action="/process-phone" method="post">
+        <div>
+            <label>Transaction ID:</label>
+            <input type="text" name="transaction_id" value="{{ transaction_id }}" readonly>
+        </div>
+        <div>
+            <label>Product ID:</label>
+            <input type="text" name="product_id" value="{{ product_id }}" readonly>
+        </div>
+        <div>
+            <label>Amount:</label>
+            <input type="text" name="amount" value="{{ amount }}" readonly>
+        </div>
+        <div>
+            <input type="hidden" name="callback_url" value="{{ callback_url }}">
+        </div>
+        <div>
+            <label>Phone Number:</label>
+            <input type="text" name="phone" required>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>
+

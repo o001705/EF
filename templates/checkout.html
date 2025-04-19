@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Merchant Checkout</title>
+  <link rel="stylesheet" href="/static/merchant_style.css" />
+</head>
+<body>
+  <h2>Buy Product: {{ product_id }}</h2>
+  <p>Cost: ₹{{ amount }}</p>
+
+  <form action="{{ mfe_url }}" method="post">
+    <input type="hidden" name="transaction_id" value="{{ transaction_id }}">
+    <input type="hidden" name="product_id" value="{{ product_id }}">
+    <input type="hidden" name="amount" value="{{ amount }}">
+    <input type="hidden" name="callback_url" value="{{ callback_url }}">
+    <table>
+      <tr><td><a href="/">Pay via Credit Card</a></td></tr>
+      <tr><td><a href="/">Pay via Debit Card</a></td></tr>
+      <tr><td><a href="/">Pay via Wallet</a></td></tr>
+      <tr><td><a href="/">Cash on Delivery</a></td></tr>
+      <tr><td><button type="submit">New*** Check BNPL Offers from Bank</button></td></tr>
+    </table>
+  </form>
+
+  <h3>Offer Status:</h3>
+  <div id="status">Waiting for bank confirmation...</div>
+
+  <!-- Use this in future to poll for status and update Status accourdingly -->
+<!--
+   <script>
+    count = 0;
+    async function pollStatus() {
+      try {
+        // Wait 2 seconds before polling again
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        txnId = document.querySelector('input[name="transaction_id"]').value;
+        const res = await fetch(`http://localhost:8002/merchant/status?txn_id=${txnId}`);
+        const json = await res.json();
+        document.getElementById("status").innerText = "Status: " + json.status + " ---- for transaction ID: " + txnId;
+  
+        // Stop polling if status is not PENDING
+        if (json.status !== "PENDING") {
+          clearInterval(pollingInterval);
+        }
+      } catch (err) {
+        console.error("Polling error:", err);
+        document.getElementById("status").innerText = "Error checking status.";
+      }
+    }
+  
+    // Start polling every 2 seconds
+    const pollingInterval = setInterval(pollStatus, 1000);
+  </script>
+-->
+</body>
+</html>

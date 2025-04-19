@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction Completion</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="container">
+        <h2>Transaction Status</h2>
+        <p>Thank you for your Interest! Your transaction status is below.</p>
+
+        {% if status == 'success' %}
+            <h3>Your loan has been successfully originated!</h3>
+            <p>Your loan is now active, and the amount will be disbursed shortly. The repayment will be as per the agreed EMI schedule.</p>
+        {% else %}
+            <h3>Transaction Failed</h3>
+            <p>Unfortunately, there was an issue with your loan application. Please try again later or choose another payment option.</p>
+        {% endif %}
+
+        <a href="http://localhost:8000/checkout">Go back to Merchant site</a>
+    </div>
+</body>
+</html>
