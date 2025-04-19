@@ -1,5 +1,4 @@
-# EF
-# Composable Embedded Finance Demo
+## Composable Embedded Finance Demo
 
 ## Overview
 This project demonstrates a Composable Embedded Finance architecture involving both a **Merchant** and a **Bank** system. The goal is to showcase how financial products (like Buy Now Pay Later or instant EMI offers) can be dynamically embedded into the merchant checkout journey via micro frontends and secure APIs.
