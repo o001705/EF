@@ -8,49 +8,72 @@
   <h2>Buy Product: {{ product_id }}</h2>
   <p>Cost: ₹{{ amount }}</p>
 
-  <form action="{{ mfe_url }}" method="post">
+  <!-- Hidden iframe for Bank MFE -->
+  <iframe name="bank_mfe_frame" id="bank_mfe_frame" style="width: 60%; height: 500px; border: 1px solid #ccc;" hidden></iframe>
+
+  <!-- Hidden form that targets the iframe -->
+  <form id="mfe_form" action="{{ mfe_url }}" method="post" target="bank_mfe_frame">
     <input type="hidden" name="transaction_id" value="{{ transaction_id }}">
     <input type="hidden" name="product_id" value="{{ product_id }}">
     <input type="hidden" name="amount" value="{{ amount }}">
     <input type="hidden" name="callback_url" value="{{ callback_url }}">
-    <table>
-      <tr><td><a href="/">Pay via Credit Card</a></td></tr>
-      <tr><td><a href="/">Pay via Debit Card</a></td></tr>
-      <tr><td><a href="/">Pay via Wallet</a></td></tr>
-      <tr><td><a href="/">Cash on Delivery</a></td></tr>
-      <tr><td><button type="submit">New*** Check BNPL Offers from Bank</button></td></tr>
-    </table>
   </form>
+
+  <table>
+    <tr><td><a href="/">Pay via Credit Card</a></td></tr>
+    <tr><td><a href="/">Pay via Debit Card</a></td></tr>
+    <tr><td><a href="/">Pay via Wallet</a></td></tr>
+    <tr><td><a href="/">Cash on Delivery</a></td></tr>
+    <tr><td><button type="button" onclick="submitMFEForm()">New*** Check BNPL Offers from Bank</button></td></tr>
+  </table>
 
   <h3>Offer Status:</h3>
   <div id="status">Waiting for bank confirmation...</div>
 
-  <!-- Use this in future to poll for status and update Status accourdingly -->
-<!--
-   <script>
-    count = 0;
-    async function pollStatus() {
-      try {
-        // Wait 2 seconds before polling again
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        txnId = document.querySelector('input[name="transaction_id"]').value;
-        const res = await fetch(`http://localhost:8002/merchant/status?txn_id=${txnId}`);
-        const json = await res.json();
-        document.getElementById("status").innerText = "Status: " + json.status + " ---- for transaction ID: " + txnId;
-  
-        // Stop polling if status is not PENDING
-        if (json.status !== "PENDING") {
-          clearInterval(pollingInterval);
-        }
-      } catch (err) {
-        console.error("Polling error:", err);
-        document.getElementById("status").innerText = "Error checking status.";
-      }
+  <script>
+    function submitMFEForm() {
+      // Unhide the iframe
+      document.getElementById("bank_mfe_frame").hidden = false;
+      document.getElementById("status").innerText = "Status: PENDING";
+      // Submit the form to iframe target
+      document.getElementById("mfe_form").submit();
+      pollStatus();
     }
-  
-    // Start polling every 2 seconds
-    const pollingInterval = setInterval(pollStatus, 1000);
   </script>
--->
+ 
+ <script>
+  async function pollStatus() {
+    try {
+      const txnId = document.querySelector('input[name="transaction_id"]').value;
+
+      const res = await fetch("http://localhost:8002/merchant/status", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ txn_id: txnId })
+      });
+
+      const json = await res.json();
+      document.getElementById("status").innerText = "Status: " + json.status + " ---- for transaction ID: " + txnId;
+
+      // Stop polling if status is not PENDING
+      if (json.status !== "PENDING") {
+        clearInterval(pollingInterval);
+      }
+    } catch (err) {
+      console.error("Polling error:", err);
+      document.getElementById("status").innerText = "Error checking status.";
+    }
+  }
+
+  let pollingInterval;
+
+  // Delay polling start by 30 seconds
+  setTimeout(() => {
+    pollingInterval = setInterval(pollStatus, 3000); // poll every 3 seconds
+  }, 10000); // wait 10 seconds before starting
+</script>
+
 </body>
 </html>

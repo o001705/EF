@@ -3,8 +3,19 @@ from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError, jwt
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+
+# Allow CORS for local frontend dev
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, restrict to your frontend's domain
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Define Bearer scheme
 bearer_scheme = HTTPBearer()
@@ -35,16 +46,21 @@ async def loan_callback(payload: CallbackPayload, token_data: dict = Depends(ver
     print(f"[CALLBACK RECEIVED] Transaction: {payload.transaction_id} | Status: {payload.status}")
     transaction_status_store[payload.transaction_id] = payload.status
     return {"message": "Callback received and status updated"}
+
+@app.post("/merchant/status")
+async def get_status(request: Request):
+    try:
+        data = await request.json()
+        txn_id = data.get("txn_id")
+        
+        status = transaction_status_store.get(txn_id)
+        if status:
+            return {"transaction_id": txn_id, "status": status}
+        else:
+            return {"transaction_id": txn_id, "status": "PENDING"}
+    except Exception as e:
+        return JSONResponse(status_code=400, content={"error": "Invalid request format"})
     
-@app.get("/merchant/status")
-async def get_transaction_status(txn_id: str):
-    status = transaction_status_store.get(txn_id)
-    if status:
-        return {"transaction_id": txn_id, "status": status}
-    else:
-        return {"transaction_id": txn_id, "status": "PENDING"}
-
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("merchant_callback:app", host="0.0.0.0", port=8002, reload=True)
