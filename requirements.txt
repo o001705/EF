@@ -4,6 +4,4 @@ jinja2
 httpx
 python-jose
 pydantic
-bcrypt
-random
-typing
+python-multipart
