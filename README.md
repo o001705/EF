@@ -12,7 +12,7 @@ This project demonstrates a Composable Embedded Finance architecture involving b
 
 ### Bank/Provider Side
 - **Reusability**: Bank services like KYC, credit scoring, and loan origination are modular and can be reused across partners.
-- **Faster Time to MArket**: Banks can add new product offerings, features, offers very quickly 
+- **Faster Time to Market**: Banks can add new product offerings, features, offers very quickly 
 - **Security**: Interactions are JWT-authenticated, and callbacks are secure.
 - **Event-driven**: Merchants are notified asynchronously, enabling decoupled workflows.
 
