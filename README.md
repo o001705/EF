@@ -1,7 +1,7 @@
 ## Composable Embedded Finance Demo
 
 ## Overview
-This project demonstrates a Composable Embedded Finance architecture involving both a **Merchant** and a **Bank** system. The goal is to showcase how financial products (like Buy Now Pay Later or instant EMI offers) can be dynamically embedded into the merchant checkout journey via micro frontends and secure APIs.
+This project demonstrates a Composable Embedded Finance architecture involving both a **Merchant** and a **Bank/Provider** system. The goal is to showcase how financial products (like Buy Now Pay Later or instant EMI offers) can be dynamically embedded into the merchant checkout journey via micro frontends and secure APIs.
 
 ## Why Composable Architecture for Embedded Finance?
 
@@ -10,8 +10,9 @@ This project demonstrates a Composable Embedded Finance architecture involving b
 - **Personalization**: Offers are tailored to the user context in real time.
 - **Seamless UX**: The user stays within the checkout journey with no redirects.
 
-### Bank Side
+### Bank/Provider Side
 - **Reusability**: Bank services like KYC, credit scoring, and loan origination are modular and can be reused across partners.
+- **Faster Time to MArket**: Banks can add new product offerings, features, offers very quickly 
 - **Security**: Interactions are JWT-authenticated, and callbacks are secure.
 - **Event-driven**: Merchants are notified asynchronously, enabling decoupled workflows.
 
